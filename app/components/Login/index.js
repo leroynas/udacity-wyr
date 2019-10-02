@@ -5,19 +5,19 @@
  */
 
 import React, { memo, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import {
-  Container,
-  Card,
-  CardHeader,
-  CardContent,
   FormControl,
   InputLabel,
   Select,
   MenuItem,
   Button,
 } from '@material-ui/core';
+
+import Page from 'components/Page';
+import PageHeader from 'components/PageHeader';
+import PageContent from 'components/PageContent';
 
 const useStyles = makeStyles({
   container: {
@@ -41,38 +41,36 @@ function Login({ users, selectUser }) {
   const handleSelectUser = () => userID !== '' && selectUser(userID);
 
   return (
-    <Container className={classes.container} maxWidth="sm">
-      <Card>
-        <CardHeader title="Login" />
+    <Page>
+      <PageHeader title="Login" />
 
-        <CardContent className={classes.content}>
-          <FormControl variant="filled">
-            <InputLabel>User</InputLabel>
+      <PageContent>
+        <FormControl variant="filled">
+          <InputLabel>User</InputLabel>
 
-            <Select
-              value={userID}
-              onChange={handleChangeUserID}
-              inputProps={{
-                name: 'User',
-              }}
-            >
-              {Object.values(users).map(user => (
-                <MenuItem value={user.id}>{user.name}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            onClick={handleSelectUser}
+          <Select
+            value={userID}
+            onChange={handleChangeUserID}
+            inputProps={{
+              name: 'User',
+            }}
           >
-            Login
-          </Button>
-        </CardContent>
-      </Card>
-    </Container>
+            {Object.values(users).map(user => (
+              <MenuItem value={user.id}>{user.name}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          onClick={handleSelectUser}
+        >
+          Login
+        </Button>
+      </PageContent>
+    </Page>
   );
 }
 
