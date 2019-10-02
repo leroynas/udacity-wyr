@@ -56,7 +56,9 @@ function Login({ users, selectUser }) {
             }}
           >
             {Object.values(users).map(user => (
-              <MenuItem value={user.id}>{user.name}</MenuItem>
+              <MenuItem key={user.id} value={user.id}>
+                {user.name}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>
