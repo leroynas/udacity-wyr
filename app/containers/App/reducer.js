@@ -1,18 +1,23 @@
 /*
  *
- * LoginContainer reducer
+ * AppContainer reducer
  *
  */
 import produce from 'immer';
-import { LOAD_USERS_SUCCESS, SELECT_USER } from './constants';
+import {
+  LOAD_USERS_SUCCESS,
+  SELECT_USER,
+  LOAD_QUESTIONS_SUCCESS,
+} from './constants';
 
 export const initialState = {
   users: {},
+  questions: {},
   currentUser: null,
 };
 
 /* eslint-disable default-case, no-param-reassign */
-const loginReducer = (state = initialState, action) =>
+const appReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case LOAD_USERS_SUCCESS:
@@ -21,7 +26,10 @@ const loginReducer = (state = initialState, action) =>
       case SELECT_USER:
         draft.currentUser = action.id;
         break;
+      case LOAD_QUESTIONS_SUCCESS:
+        draft.questions = action.questions;
+        break;
     }
   });
 
-export default loginReducer;
+export default appReducer;

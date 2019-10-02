@@ -7,21 +7,76 @@
  *
  */
 
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 
-import LoginPage from '../LoginContainer';
+import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
+import {
+  makeSelectUsers,
+  makeSelectCurrentUser,
+  makeSelectQuestions,
+} from 'containers/App/selectors';
+import { loadUsers, loadQuestions } from 'containers/App/actions';
+import Header from 'components/Header';
 
-import Header from '../../components/Header';
+import reducer from './reducer';
+import saga from './saga';
 
-export default function App() {
+import LoginContainer from '../LoginContainer/Loadable';
+import QuestionsContainer from '../QuestionsContainer/Loadable';
+
+const key = 'app';
+
+function App({ users, currentUser, questions, getUsers, getQuestions }) {
+  useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
+
+  useEffect(() => {
+    if (Object.entries(users).length === 0) getUsers();
+    if (Object.entries(questions).length === 0) getQuestions();
+  }, []);
+
   return (
     <Fragment>
-      <Header title="Would you rather?" />
+      <Header title="Would you rather?" currentUser={currentUser} />
 
       <Switch>
-        <Route path="/login" component={LoginPage} />
+        <Route path="/login" component={LoginContainer} />
+        <Route path="/questions" component={QuestionsContainer} />
       </Switch>
     </Fragment>
   );
 }
+
+App.propTypes = {
+  users: PropTypes.object.isRequired,
+  questions: PropTypes.object.isRequired,
+  currentUser: PropTypes.object,
+  getUsers: PropTypes.func.isRequired,
+  getQuestions: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = createStructuredSelector({
+  users: makeSelectUsers(),
+  currentUser: makeSelectCurrentUser(),
+  questions: makeSelectQuestions(),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getUsers: () => dispatch(loadUsers()),
+    getQuestions: () => dispatch(loadQuestions()),
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(withConnect)(App);
