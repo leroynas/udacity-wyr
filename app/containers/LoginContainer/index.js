@@ -22,11 +22,12 @@ import saga from './saga';
 const key = 'loginContainer';
 
 export function LoginContainer(props) {
+  const { users, getUsers } = props;
+
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
   useEffect(() => {
-    const { users, getUsers } = props;
     if (Object.entries(users).length === 0) getUsers();
   }, []);
 
