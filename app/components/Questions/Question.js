@@ -27,9 +27,11 @@ const useStyles = makeStyles({
   },
   container: {
     display: 'flex',
-    alignItems: 'center',
+    flexDirection: 'row',
   },
   avatarWrapper: {
+    display: 'flex',
+    alignItems: 'center',
     borderRightWidth: 1,
     borderRightColor: '#ddd',
     borderRightStyle: 'solid',
@@ -78,11 +80,7 @@ function Question({ question }) {
           </Typography>
           <Typography variant="body1">{optionOne.text} or ...</Typography>
 
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.button}
-          >
+          <Button variant="outlined" color="primary" className={classes.button}>
             View Poll
           </Button>
         </div>
