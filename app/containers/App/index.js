@@ -29,6 +29,7 @@ import saga from './saga';
 
 import LoginContainer from '../LoginContainer/Loadable';
 import QuestionsContainer from '../QuestionsContainer/Loadable';
+import QuestionContainer from '../QuestionContainer/Loadable';
 
 const key = 'app';
 
@@ -48,6 +49,7 @@ function App({ users, currentUser, questions, getUsers, getQuestions }) {
       <Switch>
         <Route path="/login" component={LoginContainer} />
         <Route path="/questions" component={QuestionsContainer} />
+        <Route path="/question/:id" component={QuestionContainer} />
       </Switch>
     </Fragment>
   );

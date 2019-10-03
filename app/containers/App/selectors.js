@@ -7,6 +7,7 @@ import { createSelector } from 'reselect';
 const selectUsers = state => (state.app ? state.app.users : {});
 const selectCurrentUser = state => (state.app ? state.app.currentUser : null);
 const selectQuestions = state => (state.app ? state.app.questions : {});
+const selectQuestionId = (state, ownProps) => ownProps.match.params.id;
 
 /**
  * Default selector used by AppContainer
@@ -42,4 +43,21 @@ const makeSelectQuestions = () =>
       ),
   );
 
-export { makeSelectUsers, makeSelectCurrentUser, makeSelectQuestions };
+const makeSelectQuestion = () =>
+  createSelector(
+    selectUsers,
+    selectQuestions,
+    selectQuestionId,
+    (users, questions, id) =>
+      questions[id] && {
+        ...questions[id],
+        authorName: users[questions[id].author].name,
+      },
+  );
+
+export {
+  makeSelectUsers,
+  makeSelectCurrentUser,
+  makeSelectQuestions,
+  makeSelectQuestion,
+};

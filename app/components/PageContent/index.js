@@ -16,13 +16,19 @@ const useStyles = makeStyles({
   },
 });
 
-function PageContent({ children }) {
+function PageContent({ children, className }) {
   const classes = useStyles();
-  return <CardContent className={classes.content}>{children}</CardContent>;
+
+  return (
+    <CardContent className={[classes.content, className]}>
+      {children}
+    </CardContent>
+  );
 }
 
 PageContent.propTypes = {
-  children: PropTypes.array,
+  className: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
 export default memo(PageContent);
