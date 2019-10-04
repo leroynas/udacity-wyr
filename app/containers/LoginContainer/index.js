@@ -10,8 +10,8 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import { loginUser } from 'containers/App/actions';
-import { makeSelectUsers } from 'containers/App/selectors';
+import { loginUser } from 'containers/AppContainer/actions';
+import { makeSelectUsers } from 'containers/AppContainer/selectors';
 import Login from 'components/Login/Loadable';
 
 export function LoginContainer(props) {

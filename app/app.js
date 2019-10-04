@@ -17,7 +17,7 @@ import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
-import App from 'containers/App';
+import AppContainer from 'containers/AppContainer';
 
 // Load the favicon and the .htaccess file
 /* eslint-disable import/no-unresolved, import/extensions */
@@ -36,7 +36,7 @@ const render = () => {
   ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <App />
+        <AppContainer />
       </ConnectedRouter>
     </Provider>,
     MOUNT_NODE,
@@ -47,7 +47,7 @@ if (module.hot) {
   // Hot reloadable React components modules.hot.accept does
   // not accept dynamic dependencies,have to be constants
   // at compile-time
-  module.hot.accept(['containers/App'], () => {
+  module.hot.accept(['containers/AppContainer'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     render();
   });

@@ -1,6 +1,6 @@
 /**
  *
- * App.js
+ * AppContainer
  *
  * This component is the skeleton around the actual pages, and should only
  * contain code that should be seen on all pages. (e.g. navigation bar)
@@ -20,8 +20,8 @@ import {
   makeSelectUsers,
   makeSelectCurrentUser,
   makeSelectQuestions,
-} from 'containers/App/selectors';
-import { loadUsers, loadQuestions } from 'containers/App/actions';
+} from 'containers/AppContainer/selectors';
+import { loadUsers, loadQuestions } from 'containers/AppContainer/actions';
 import Header from 'components/Header';
 
 import ProtectedRoute from './ProtectedRoute';
@@ -31,7 +31,13 @@ import routes from './routes';
 
 const key = 'app';
 
-function App({ users, currentUser, questions, getUsers, getQuestions }) {
+function AppContainer({
+  users,
+  currentUser,
+  questions,
+  getUsers,
+  getQuestions,
+}) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
@@ -61,7 +67,7 @@ function App({ users, currentUser, questions, getUsers, getQuestions }) {
   );
 }
 
-App.propTypes = {
+AppContainer.propTypes = {
   users: PropTypes.object.isRequired,
   questions: PropTypes.object.isRequired,
   currentUser: PropTypes.object,
@@ -87,4 +93,4 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-export default compose(withConnect)(App);
+export default compose(withConnect)(AppContainer);

@@ -10,8 +10,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { makeSelectCurrentUser } from 'containers/App/selectors';
-import { storeQuestion } from 'containers/App/actions';
+import { makeSelectCurrentUser } from 'containers/AppContainer/selectors';
+import { storeQuestion } from 'containers/AppContainer/actions';
 import NewQuestion from 'components/NewQuestion';
 
 export function NewQuestionContainer(props) {
