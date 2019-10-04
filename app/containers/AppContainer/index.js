@@ -7,9 +7,8 @@
  *
  */
 
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -22,22 +21,16 @@ import {
   makeSelectQuestions,
 } from 'containers/AppContainer/selectors';
 import { loadUsers, loadQuestions } from 'containers/AppContainer/actions';
-import Header from 'components/Header';
+import App from 'components/App';
 
-import ProtectedRoute from './ProtectedRoute';
 import reducer from './reducer';
 import saga from './saga';
-import routes from './routes';
 
 const key = 'app';
 
-function AppContainer({
-  users,
-  currentUser,
-  questions,
-  getUsers,
-  getQuestions,
-}) {
+function AppContainer(props) {
+  const { users, questions, getUsers, getQuestions } = props;
+
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
@@ -46,25 +39,7 @@ function AppContainer({
     if (Object.entries(questions).length === 0) getQuestions();
   }, []);
 
-  return (
-    <Fragment>
-      <Header title="Would you rather?" currentUser={currentUser} />
-
-      <Switch>
-        {routes.public.map(route => (
-          <Route key={route.path} {...route} />
-        ))}
-
-        {routes.protected.map(route => (
-          <ProtectedRoute
-            key={route.path}
-            currentUser={currentUser}
-            {...route}
-          />
-        ))}
-      </Switch>
-    </Fragment>
-  );
+  return <App {...props} />;
 }
 
 AppContainer.propTypes = {
