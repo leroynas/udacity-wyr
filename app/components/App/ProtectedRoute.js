@@ -10,7 +10,7 @@ function ProtectedRoute({ component: Component, currentUser, ...rest }) {
         currentUser !== null ? (
           <Component {...props} />
         ) : (
-          <Redirect to={{ pathname: 'login' }} />
+          <Redirect to={{ pathname: '/login' }} />
         )
       }
     />
