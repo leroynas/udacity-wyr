@@ -24,12 +24,10 @@ import {
 import { loadUsers, loadQuestions } from 'containers/App/actions';
 import Header from 'components/Header';
 
+import ProtectedRoute from './ProtectedRoute';
 import reducer from './reducer';
 import saga from './saga';
-
-import LoginContainer from '../LoginContainer/Loadable';
-import QuestionsContainer from '../QuestionsContainer/Loadable';
-import QuestionContainer from '../QuestionContainer/Loadable';
+import routes from './routes';
 
 const key = 'app';
 
@@ -47,9 +45,17 @@ function App({ users, currentUser, questions, getUsers, getQuestions }) {
       <Header title="Would you rather?" currentUser={currentUser} />
 
       <Switch>
-        <Route path="/login" component={LoginContainer} />
-        <Route path="/questions" component={QuestionsContainer} />
-        <Route path="/question/:id" component={QuestionContainer} />
+        {routes.public.map(route => (
+          <Route key={route.path} {...route} />
+        ))}
+
+        {routes.protected.map(route => (
+          <ProtectedRoute
+            key={route.path}
+            currentUser={currentUser}
+            {...route}
+          />
+        ))}
       </Switch>
     </Fragment>
   );

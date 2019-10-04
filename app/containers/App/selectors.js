@@ -23,7 +23,7 @@ const makeSelectCurrentUser = () =>
   createSelector(
     selectUsers,
     selectCurrentUser,
-    (users, currentUser) => users[currentUser],
+    (users, currentUser) => currentUser && users && users[currentUser],
   );
 
 const makeSelectQuestions = () =>
