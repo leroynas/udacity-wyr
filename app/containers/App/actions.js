@@ -12,6 +12,9 @@ import {
   LOAD_QUESTIONS,
   LOAD_QUESTIONS_SUCCESS,
   LOAD_QUESTIONS_FAILED,
+  STORE_QUESTION,
+  STORE_QUESTION_SUCCESS,
+  STORE_QUESTION_FAILED,
 } from './constants';
 
 export function loadUsers() {
@@ -57,6 +60,27 @@ export function questionsLoaded(questions) {
 export function questionsLoadingError(message) {
   return {
     type: LOAD_QUESTIONS_FAILED,
+    message,
+  };
+}
+
+export function storeQuestion(question) {
+  return {
+    type: STORE_QUESTION,
+    question,
+  };
+}
+
+export function questionSaved(question) {
+  return {
+    type: STORE_QUESTION_SUCCESS,
+    question,
+  };
+}
+
+export function questionSavingError(message) {
+  return {
+    type: STORE_QUESTION_FAILED,
     message,
   };
 }

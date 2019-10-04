@@ -4,14 +4,22 @@ import { push } from 'connected-react-router';
 import {
   _getUsers as fetchUsers,
   _getQuestions as fetchQuestions,
+  _saveQuestion as saveQuestion,
 } from 'core/api';
 
-import { LOAD_USERS, SELECT_USER, LOAD_QUESTIONS } from './constants';
+import {
+  LOAD_USERS,
+  SELECT_USER,
+  LOAD_QUESTIONS,
+  STORE_QUESTION,
+} from './constants';
 import {
   usersLoaded,
   usersLoadingError,
   questionsLoaded,
   questionsLoadingError,
+  questionSaved,
+  questionSavingError,
 } from './actions';
 
 function* loadUsers() {
@@ -36,11 +44,21 @@ function* loadQuestions() {
   }
 }
 
+function* storeQuestion({ question }) {
+  try {
+    const result = yield call(saveQuestion, question);
+    yield put(questionSaved(result));
+  } catch ({ message }) {
+    yield put(questionSavingError(message));
+  }
+}
+
 // Individual exports for testing
 export default function* loginContainerSaga() {
   yield* [
     takeLatest(LOAD_USERS, loadUsers),
     takeLatest(SELECT_USER, selectUser),
     takeLatest(LOAD_QUESTIONS, loadQuestions),
+    takeLatest(STORE_QUESTION, storeQuestion),
   ];
 }

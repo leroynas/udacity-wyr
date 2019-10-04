@@ -8,6 +8,7 @@ import {
   LOAD_USERS_SUCCESS,
   SELECT_USER,
   LOAD_QUESTIONS_SUCCESS,
+  STORE_QUESTION_SUCCESS,
 } from './constants';
 
 export const initialState = {
@@ -28,6 +29,9 @@ const appReducer = (state = initialState, action) =>
         break;
       case LOAD_QUESTIONS_SUCCESS:
         draft.questions = action.questions;
+        break;
+      case STORE_QUESTION_SUCCESS:
+        draft.questions[action.question.id] = action.question;
         break;
     }
   });
