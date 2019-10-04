@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-function Header({ title, currentUser }) {
+function Header({ title, currentUser, logoutUser }) {
   const classes = useStyles();
 
   return (
@@ -32,7 +32,9 @@ function Header({ title, currentUser }) {
         {currentUser && (
           <Fragment>
             <Button color="inherit">{currentUser.name}</Button>
-            <Button color="inherit">Logout</Button>
+            <Button color="inherit" onClick={logoutUser}>
+              Logout
+            </Button>
           </Fragment>
         )}
       </Toolbar>
@@ -43,6 +45,7 @@ function Header({ title, currentUser }) {
 Header.propTypes = {
   title: PropTypes.string.isRequired,
   currentUser: PropTypes.object,
+  logoutUser: PropTypes.func.isRequired,
 };
 
 export default memo(Header);

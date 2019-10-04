@@ -13,10 +13,14 @@ import Header from 'components/Header';
 import ProtectedRoute from './ProtectedRoute';
 import routes from './routes';
 
-function App({ currentUser }) {
+function App({ currentUser, logoutUser }) {
   return (
     <Fragment>
-      <Header title="Would you rather?" currentUser={currentUser} />
+      <Header
+        title="Would you rather?"
+        currentUser={currentUser}
+        logoutUser={logoutUser}
+      />
 
       <Switch>
         {routes.public.map(route => (
@@ -36,7 +40,8 @@ function App({ currentUser }) {
 }
 
 App.propTypes = {
-  currentUser: PropTypes.object.isRequired,
+  currentUser: PropTypes.object,
+  logoutUser: PropTypes.func.isRequired,
 };
 
 export default memo(App);

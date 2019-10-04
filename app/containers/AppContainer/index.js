@@ -20,7 +20,11 @@ import {
   makeSelectCurrentUser,
   makeSelectQuestions,
 } from 'containers/AppContainer/selectors';
-import { loadUsers, loadQuestions } from 'containers/AppContainer/actions';
+import {
+  loadUsers,
+  loadQuestions,
+  logoutUser,
+} from 'containers/AppContainer/actions';
 import App from 'components/App';
 
 import reducer from './reducer';
@@ -48,6 +52,7 @@ AppContainer.propTypes = {
   currentUser: PropTypes.object,
   getUsers: PropTypes.func.isRequired,
   getQuestions: PropTypes.func.isRequired,
+  logoutUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -60,6 +65,7 @@ function mapDispatchToProps(dispatch) {
   return {
     getUsers: () => dispatch(loadUsers()),
     getQuestions: () => dispatch(loadQuestions()),
+    logoutUser: () => dispatch(logoutUser()),
   };
 }
 
