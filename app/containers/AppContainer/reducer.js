@@ -7,6 +7,7 @@ import produce from 'immer';
 import {
   LOAD_USERS_SUCCESS,
   LOGIN_USER,
+  LOGOUT_USER,
   LOAD_QUESTIONS_SUCCESS,
   STORE_QUESTION_SUCCESS,
 } from './constants';
@@ -26,6 +27,9 @@ const appReducer = (state = initialState, action) =>
         break;
       case LOGIN_USER:
         draft.currentUser = action.id;
+        break;
+      case LOGOUT_USER:
+        draft.currentUser = null;
         break;
       case LOAD_QUESTIONS_SUCCESS:
         draft.questions = action.questions;

@@ -9,6 +9,7 @@ import {
   LOAD_USERS_SUCCESS,
   LOAD_USERS_FAILED,
   LOGIN_USER,
+  LOGOUT_USER,
   LOAD_QUESTIONS,
   LOAD_QUESTIONS_SUCCESS,
   LOAD_QUESTIONS_FAILED,
@@ -41,6 +42,12 @@ export function loginUser(id) {
   return {
     type: LOGIN_USER,
     id,
+  };
+}
+
+export function logoutUser() {
+  return {
+    type: LOGOUT_USER,
   };
 }
 
