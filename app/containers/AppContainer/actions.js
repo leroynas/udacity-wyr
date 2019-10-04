@@ -85,9 +85,10 @@ export function questionSaved(question) {
   };
 }
 
-export function questionSavingError(message) {
+export function questionSavingError(message, question) {
   return {
     type: STORE_QUESTION_FAILED,
     message,
+    question,
   };
 }

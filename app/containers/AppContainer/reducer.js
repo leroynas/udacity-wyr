@@ -10,6 +10,7 @@ import {
   LOGOUT_USER,
   LOAD_QUESTIONS_SUCCESS,
   STORE_QUESTION_SUCCESS,
+  STORE_QUESTION_FAILED,
 } from './constants';
 
 export const initialState = {
@@ -36,6 +37,11 @@ const appReducer = (state = initialState, action) =>
         break;
       case STORE_QUESTION_SUCCESS:
         draft.questions[action.question.id] = action.question;
+        draft.users[action.question.author].questions.push(action.question.id);
+        break;
+      case STORE_QUESTION_FAILED:
+        delete draft.questions[action.question.id];
+        draft.users[action.question.author].questions.pop();
         break;
     }
   });

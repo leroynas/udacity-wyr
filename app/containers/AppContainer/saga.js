@@ -5,6 +5,7 @@ import {
   _getUsers as fetchUsers,
   _getQuestions as fetchQuestions,
   _saveQuestion as saveQuestion,
+  _formatQuestion as formatQuestion,
 } from 'core/api';
 
 import {
@@ -46,10 +47,15 @@ function* loadQuestions() {
 
 function* storeQuestion({ question }) {
   try {
-    const result = yield call(saveQuestion, question);
-    yield* [put(questionSaved(result)), put(push('/questions'))];
+    const formattedQuestion = formatQuestion(question);
+
+    yield* [
+      put(questionSaved(formattedQuestion)),
+      put(push('/questions')),
+      call(saveQuestion, formattedQuestion),
+    ];
   } catch ({ message }) {
-    yield put(questionSavingError(message));
+    yield put(questionSavingError(message, question.id));
   }
 }
 
