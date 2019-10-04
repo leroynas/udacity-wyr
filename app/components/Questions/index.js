@@ -13,14 +13,14 @@ import PageContent from 'components/PageContent';
 
 import Question from './Question';
 
-function Questions({ questions }) {
+function Questions({ questions, history }) {
   return (
     <Page>
       <PageHeader title="Questions" />
 
       <PageContent>
         {Object.values(questions).map(question => (
-          <Question key={question.id} question={question} />
+          <Question key={question.id} question={question} history={history} />
         ))}
       </PageContent>
     </Page>
@@ -29,6 +29,7 @@ function Questions({ questions }) {
 
 Questions.propTypes = {
   questions: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default memo(Questions);

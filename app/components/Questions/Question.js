@@ -58,9 +58,11 @@ const useStyles = makeStyles({
   },
 });
 
-function Question({ question }) {
+function Question({ question, history }) {
   const classes = useStyles();
-  const { authorName, optionOne } = question;
+  const { id, authorName, optionOne } = question;
+
+  const goToQuestion = () => history.push(`/question/${id}`);
 
   return (
     <Card className={classes.card}>
@@ -80,7 +82,12 @@ function Question({ question }) {
           </Typography>
           <Typography variant="body1">{optionOne.text} or ...</Typography>
 
-          <Button variant="outlined" color="primary" className={classes.button}>
+          <Button
+            variant="outlined"
+            color="primary"
+            className={classes.button}
+            onClick={goToQuestion}
+          >
             View Poll
           </Button>
         </div>
@@ -91,6 +98,7 @@ function Question({ question }) {
 
 Question.propTypes = {
   question: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default memo(Question);
