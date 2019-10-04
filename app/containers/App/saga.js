@@ -47,14 +47,14 @@ function* loadQuestions() {
 function* storeQuestion({ question }) {
   try {
     const result = yield call(saveQuestion, question);
-    yield put(questionSaved(result));
+    yield* [put(questionSaved(result)), put(push('/questions'))];
   } catch ({ message }) {
     yield put(questionSavingError(message));
   }
 }
 
 // Individual exports for testing
-export default function* loginContainerSaga() {
+export default function* appContainerSaga() {
   yield* [
     takeLatest(LOAD_USERS, loadUsers),
     takeLatest(SELECT_USER, selectUser),
