@@ -12,7 +12,7 @@ import { compose } from 'redux';
 
 import { loginUser } from 'containers/AppContainer/actions';
 import { makeSelectUsers } from 'containers/AppContainer/selectors';
-import Login from 'components/Login/Loadable';
+import Login from 'components/Login';
 
 export function LoginContainer(props) {
   return <Login {...props} />;
