@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import { selectUser } from 'containers/App/actions';
+import { loginUser } from 'containers/App/actions';
 import { makeSelectUsers } from 'containers/App/selectors';
 import Login from 'components/Login/Loadable';
 
@@ -20,7 +20,7 @@ export function LoginContainer(props) {
 
 LoginContainer.propTypes = {
   users: PropTypes.object.isRequired,
-  selectUser: PropTypes.func.isRequired,
+  loginUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -29,7 +29,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    selectUser: id => dispatch(selectUser(id)),
+    loginUser: id => dispatch(loginUser(id)),
   };
 }
 

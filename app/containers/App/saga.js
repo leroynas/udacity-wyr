@@ -9,7 +9,7 @@ import {
 
 import {
   LOAD_USERS,
-  SELECT_USER,
+  LOGIN_USER,
   LOAD_QUESTIONS,
   STORE_QUESTION,
 } from './constants';
@@ -31,7 +31,7 @@ function* loadUsers() {
   }
 }
 
-function* selectUser() {
+function* loginUser() {
   yield put(push('/questions'));
 }
 
@@ -57,7 +57,7 @@ function* storeQuestion({ question }) {
 export default function* appContainerSaga() {
   yield* [
     takeLatest(LOAD_USERS, loadUsers),
-    takeLatest(SELECT_USER, selectUser),
+    takeLatest(LOGIN_USER, loginUser),
     takeLatest(LOAD_QUESTIONS, loadQuestions),
     takeLatest(STORE_QUESTION, storeQuestion),
   ];

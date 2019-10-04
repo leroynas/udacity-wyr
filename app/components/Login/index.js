@@ -32,13 +32,13 @@ const useStyles = makeStyles({
   },
 });
 
-function Login({ users, selectUser }) {
+function Login({ users, loginUser }) {
   const classes = useStyles();
   const [userID, setUserID] = useState('');
 
   const handleChangeUserID = event => setUserID(event.target.value);
 
-  const handleSelectUser = () => userID !== '' && selectUser(userID);
+  const handleLoginUser = () => userID !== '' && loginUser(userID);
 
   return (
     <Page>
@@ -67,7 +67,7 @@ function Login({ users, selectUser }) {
           variant="contained"
           color="primary"
           className={classes.button}
-          onClick={handleSelectUser}
+          onClick={handleLoginUser}
         >
           Login
         </Button>
@@ -78,7 +78,7 @@ function Login({ users, selectUser }) {
 
 Login.propTypes = {
   users: PropTypes.object.isRequired,
-  selectUser: PropTypes.func.isRequired,
+  loginUser: PropTypes.func.isRequired,
 };
 
 export default memo(Login);

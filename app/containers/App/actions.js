@@ -8,7 +8,7 @@ import {
   LOAD_USERS,
   LOAD_USERS_SUCCESS,
   LOAD_USERS_FAILED,
-  SELECT_USER,
+  LOGIN_USER,
   LOAD_QUESTIONS,
   LOAD_QUESTIONS_SUCCESS,
   LOAD_QUESTIONS_FAILED,
@@ -37,9 +37,9 @@ export function usersLoadingError(message) {
   };
 }
 
-export function selectUser(id) {
+export function loginUser(id) {
   return {
-    type: SELECT_USER,
+    type: LOGIN_USER,
     id,
   };
 }
