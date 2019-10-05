@@ -4,6 +4,7 @@ import QuestionContainer from 'containers/QuestionContainer/Loadable';
 import NewQuestionContainer from 'containers/NewQuestionContainer/Loadable';
 
 const routes = {
+  default: '/questions',
   public: [
     {
       path: '/login',

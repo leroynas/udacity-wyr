@@ -6,7 +6,7 @@
 
 import React, { memo, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
+import { Redirect, Switch, Route } from 'react-router-dom';
 
 import Header from 'components/Header';
 
@@ -24,16 +24,19 @@ function App({ currentUser, logoutUser }) {
 
       <Switch>
         {routes.public.map(route => (
-          <Route key={route.path} {...route} />
+          <Route key={route.path} exact {...route} />
         ))}
 
         {routes.protected.map(route => (
           <ProtectedRoute
             key={route.path}
             currentUser={currentUser}
+            exact
             {...route}
           />
         ))}
+
+        <Redirect exact from="/" to={routes.default} />
       </Switch>
     </Fragment>
   );
