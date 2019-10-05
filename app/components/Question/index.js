@@ -8,7 +8,6 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import {
-  Avatar,
   Typography,
   Button,
   RadioGroup,
@@ -19,23 +18,12 @@ import {
 import Page from 'components/Page';
 import PageHeader from 'components/PageHeader';
 import PageContent from 'components/PageContent';
+import CardAvatar from 'components/CardAvatar';
 
 const useStyles = makeStyles({
   container: {
     display: 'flex',
     flexDirection: 'row',
-  },
-  avatarWrapper: {
-    display: 'flex',
-    alignItems: 'center',
-    borderRightWidth: 1,
-    borderRightColor: '#ddd',
-    borderRightStyle: 'solid',
-  },
-  avatar: {
-    marginRight: 20,
-    width: 100,
-    height: 100,
   },
   content: {
     display: 'flex',
@@ -65,12 +53,7 @@ function Question({ question }) {
       <PageHeader title={`${authorName} asks:`} />
 
       <PageContent className={classes.container}>
-        <div className={classes.avatarWrapper}>
-          <Avatar
-            src="http://via.placeholder.com/100"
-            className={classes.avatar}
-          />
-        </div>
+        <CardAvatar />
 
         <div className={classes.content}>
           <Typography variant="h6" className={classes.title}>
