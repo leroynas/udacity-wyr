@@ -10,7 +10,11 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { makeSelectQuestion } from 'containers/AppContainer/selectors';
+import { storeAnswer } from 'containers/AppContainer/actions';
+import {
+  makeSelectQuestion,
+  makeSelectCurrentUser,
+} from 'containers/AppContainer/selectors';
 import Question from 'components/Question';
 
 export function QuestionContainer(props) {
@@ -18,16 +22,19 @@ export function QuestionContainer(props) {
 }
 
 QuestionContainer.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  question: PropTypes.object.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  saveAnswer: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   question: makeSelectQuestion(),
+  currentUser: makeSelectCurrentUser(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    saveAnswer: answer => dispatch(storeAnswer(answer)),
   };
 }
 

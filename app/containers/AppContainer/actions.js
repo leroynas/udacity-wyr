@@ -16,6 +16,9 @@ import {
   STORE_QUESTION,
   STORE_QUESTION_SUCCESS,
   STORE_QUESTION_FAILED,
+  STORE_ANSWER,
+  STORE_ANSWER_SUCCESS,
+  STORE_ANSWER_FAILED,
 } from './constants';
 
 export function loadUsers() {
@@ -90,5 +93,27 @@ export function questionSavingError(message, question) {
     type: STORE_QUESTION_FAILED,
     message,
     question,
+  };
+}
+
+export function storeAnswer(answer) {
+  return {
+    type: STORE_ANSWER,
+    answer,
+  };
+}
+
+export function answerSaved(answer) {
+  return {
+    type: STORE_ANSWER_SUCCESS,
+    answer,
+  };
+}
+
+export function answerSavingError(message, answer) {
+  return {
+    type: STORE_ANSWER_FAILED,
+    message,
+    answer,
   };
 }

@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import {
@@ -42,16 +42,20 @@ const useStyles = makeStyles({
   },
 });
 
-function Question({ question, history }) {
+function Question({ question, currentUser, saveAnswer }) {
   const classes = useStyles();
+  const [answer, setAnswer] = useState('');
 
-  const { id, authorName, optionOne, optionTwo } = question;
-
-  const goToQuestionResult = () => history.push(`/question/${id}/result`);
+  const handleSaveAnswer = () =>
+    saveAnswer({
+      qid: question.id,
+      uid: currentUser.id,
+      answer,
+    });
 
   return (
     <Page>
-      <PageHeader title={`${authorName} asks:`} />
+      <PageHeader title={`${question.authorName} asks:`} />
 
       <PageContent className={classes.container}>
         <CardAvatar />
@@ -61,16 +65,23 @@ function Question({ question, history }) {
             Would you rather...
           </Typography>
 
-          <RadioGroup aria-label="option" name="option">
+          <RadioGroup
+            aria-label="option"
+            name="option"
+            value={answer}
+            onChange={event => {
+              setAnswer(event.target.value);
+            }}
+          >
             <FormControlLabel
               value="optionOne"
               control={<Radio />}
-              label={optionOne.text}
+              label={question.optionOne.text}
             />
             <FormControlLabel
               value="optionTwo"
               control={<Radio />}
-              label={optionTwo.text}
+              label={question.optionTwo.text}
             />
           </RadioGroup>
 
@@ -78,7 +89,7 @@ function Question({ question, history }) {
             variant="outlined"
             color="primary"
             className={classes.button}
-            onClick={goToQuestionResult}
+            onClick={handleSaveAnswer}
           >
             Submit answer
           </Button>
@@ -90,7 +101,8 @@ function Question({ question, history }) {
 
 Question.propTypes = {
   question: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  saveAnswer: PropTypes.func.isRequired,
 };
 
 export default memo(Question);

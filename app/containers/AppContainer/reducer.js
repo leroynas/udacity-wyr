@@ -11,6 +11,8 @@ import {
   LOAD_QUESTIONS_SUCCESS,
   STORE_QUESTION_SUCCESS,
   STORE_QUESTION_FAILED,
+  STORE_ANSWER_SUCCESS,
+  STORE_ANSWER_FAILED,
 } from './constants';
 
 export const initialState = {
@@ -42,6 +44,17 @@ const appReducer = (state = initialState, action) =>
       case STORE_QUESTION_FAILED:
         delete draft.questions[action.question.id];
         draft.users[action.question.author].questions.pop();
+        break;
+      case STORE_ANSWER_SUCCESS:
+        draft.questions[action.answer.qid][action.answer.answer].votes.push(
+          action.answer.uid,
+        );
+        draft.users[action.answer.uid].answers[action.answer.qid] =
+          action.answer.answer;
+        break;
+      case STORE_ANSWER_FAILED:
+        draft.questions[action.qid][action.answer].votes.pop();
+        delete draft.users[action.uid].answers[action.qid];
         break;
     }
   });

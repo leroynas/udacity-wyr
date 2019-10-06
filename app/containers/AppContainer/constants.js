@@ -18,3 +18,7 @@ export const LOAD_QUESTIONS_FAILED = 'app/AppContainer/LOAD_QUESTIONS_FAILED';
 export const STORE_QUESTION = 'app/AppContainer/STORE_QUESTION';
 export const STORE_QUESTION_SUCCESS = 'app/AppContainer/STORE_QUESTION_SUCCESS';
 export const STORE_QUESTION_FAILED = 'app/AppContainer/STORE_QUESTION_FAILED';
+
+export const STORE_ANSWER = 'app/AppContainer/STORE_ANSWER';
+export const STORE_ANSWER_SUCCESS = 'app/AppContainer/STORE_ANSWER_SUCCESS';
+export const STORE_ANSWER_FAILED = 'app/AppContainer/STORE_ANSWER_FAILED';
