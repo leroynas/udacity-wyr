@@ -42,11 +42,12 @@ const useStyles = makeStyles({
   },
 });
 
-function Question({ question }) {
+function Question({ question, history }) {
   const classes = useStyles();
 
-  if (!question) return null;
-  const { authorName, optionOne, optionTwo } = question;
+  const { id, authorName, optionOne, optionTwo } = question;
+
+  const goToQuestionResult = () => history.push(`/question/${id}/result`);
 
   return (
     <Page>
@@ -73,7 +74,12 @@ function Question({ question }) {
             />
           </RadioGroup>
 
-          <Button variant="outlined" color="primary" className={classes.button}>
+          <Button
+            variant="outlined"
+            color="primary"
+            className={classes.button}
+            onClick={goToQuestionResult}
+          >
             Submit answer
           </Button>
         </div>
@@ -83,7 +89,8 @@ function Question({ question }) {
 }
 
 Question.propTypes = {
-  question: PropTypes.object,
+  question: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default memo(Question);
