@@ -4,8 +4,10 @@
 
 // Colors
 export const colorPrimary = '#00acc1';
+export const colorPrimaryLight = '#e0f7fa';
 export const colorPrimaryText = '#ffffff';
 export const colorSecondary = '#212121';
+export const colorSecondaryLight = '#eceff1';
 export const colorSecondaryText = '#ffffff';
 
 export const colorSuccess = '#5cb860';
