@@ -5,11 +5,12 @@ import QuestionResultContainer from 'containers/QuestionResultContainer/Loadable
 import NewQuestionContainer from 'containers/NewQuestionContainer/Loadable';
 
 const routes = {
-  default: '/questions',
+  default: '/questions/unanswered',
   public: [
     {
       path: '/login',
       component: LoginContainer,
+      exact: true,
     },
   ],
   protected: [
@@ -20,14 +21,17 @@ const routes = {
     {
       path: '/question/:id',
       component: QuestionContainer,
+      exact: true,
     },
     {
       path: '/question/:id/result',
       component: QuestionResultContainer,
+      exact: true,
     },
     {
       path: '/new-question',
       component: NewQuestionContainer,
+      exact: true,
     },
   ],
 };

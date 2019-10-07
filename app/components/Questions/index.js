@@ -6,22 +6,55 @@
 
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Page from 'components/Page';
-import PageHeader from 'components/PageHeader';
+import PageTabs from 'components/PageTabs';
 import PageContent from 'components/PageContent';
 
-import Question from './Question';
+import QuestionList from './QuestionList';
 
-function Questions({ questionsAnswered, history }) {
+function Questions({
+  questionsAnswered,
+  questionsUnanswered,
+  history,
+  location,
+}) {
+  const tabs = [
+    {
+      title: 'UNANSWERED QUESTIONS',
+      action: () => history.push('/questions/unanswered'),
+      active: location.pathname.includes('/questions/unanswered'),
+    },
+    {
+      title: 'ANSWERED QUESTIONS',
+      action: () => history.push('/questions/answered'),
+      active: location.pathname.includes('/questions/answered'),
+    },
+  ];
+
   return (
     <Page>
-      <PageHeader title="Questions" />
+      <PageTabs tabs={tabs} />
 
       <PageContent>
-        {Object.values(questionsAnswered).map(question => (
-          <Question key={question.id} question={question} history={history} />
-        ))}
+        <Switch>
+          <Route
+            path="/questions/unanswered"
+            render={() => (
+              <QuestionList questions={questionsUnanswered} history={history} />
+            )}
+          />
+
+          <Route
+            path="/questions/answered"
+            render={() => (
+              <QuestionList questions={questionsAnswered} history={history} />
+            )}
+          />
+
+          <Redirect to="/questions/unanswered" />
+        </Switch>
       </PageContent>
     </Page>
   );
@@ -29,7 +62,9 @@ function Questions({ questionsAnswered, history }) {
 
 Questions.propTypes = {
   questionsAnswered: PropTypes.object.isRequired,
+  questionsUnanswered: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default memo(Questions);

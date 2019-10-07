@@ -31,7 +31,6 @@ function App({ currentUser, logoutUser }) {
           <ProtectedRoute
             key={route.path}
             currentUser={currentUser}
-            exact
             {...route}
           />
         ))}

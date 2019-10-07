@@ -37,7 +37,7 @@ function* loadUsers() {
 }
 
 function* loginUser() {
-  yield put(push('/questions'));
+  yield put(push('/questions/unanswered'));
 }
 
 function* loadQuestions() {
@@ -55,7 +55,7 @@ function* storeQuestion({ question }) {
 
     yield* [
       put(questionSaved(formattedQuestion)),
-      put(push('/questions')),
+      put(push('/questions/unanswered')),
       call(saveQuestion, formattedQuestion),
     ];
   } catch ({ message }) {

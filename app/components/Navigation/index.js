@@ -21,7 +21,7 @@ function Navigation() {
 
   return (
     <Fragment>
-      <Link to="/questions" className={classes.link}>
+      <Link to="/questions/unanswered" className={classes.link}>
         <Button color="inherit">Questions</Button>
       </Link>
 
