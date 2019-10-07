@@ -56,8 +56,8 @@ AppContainer.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  users: makeSelectUsers(),
-  currentUser: makeSelectCurrentUser(),
+  users: makeSelectUsers,
+  currentUser: makeSelectCurrentUser,
   questions: makeSelectQuestions(),
 });
 

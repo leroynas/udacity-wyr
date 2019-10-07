@@ -13,18 +13,16 @@ const selectQuestionId = (state, ownProps) => ownProps.match.params.id;
  * Default selector used by AppContainer
  */
 
-const makeSelectUsers = () =>
-  createSelector(
-    selectUsers,
-    users => users,
-  );
+const makeSelectUsers = createSelector(
+  selectUsers,
+  users => users,
+);
 
-const makeSelectCurrentUser = () =>
-  createSelector(
-    selectUsers,
-    selectCurrentUser,
-    (users, currentUser) => currentUser && users && users[currentUser],
-  );
+const makeSelectCurrentUser = createSelector(
+  selectUsers,
+  selectCurrentUser,
+  (users, currentUser) => currentUser && users && users[currentUser],
+);
 
 const makeSelectQuestions = () =>
   createSelector(
@@ -44,18 +42,17 @@ const makeSelectQuestions = () =>
       ),
   );
 
-const makeSelectQuestion = () =>
-  createSelector(
-    selectUsers,
-    selectQuestions,
-    selectQuestionId,
-    (users, questions, id) =>
-      questions[id] && {
-        ...questions[id],
-        authorName: users[questions[id].author].name,
-        authorAvatarURL: users[questions[id].author].avatarURL,
-      },
-  );
+const makeSelectQuestion = createSelector(
+  selectUsers,
+  selectQuestions,
+  selectQuestionId,
+  (users, questions, id) =>
+    questions[id] && {
+      ...questions[id],
+      authorName: users[questions[id].author].name,
+      authorAvatarURL: users[questions[id].author].avatarURL,
+    },
+);
 
 export {
   makeSelectUsers,

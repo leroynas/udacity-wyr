@@ -28,8 +28,8 @@ QuestionContainer.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  question: makeSelectQuestion(),
-  currentUser: makeSelectCurrentUser(),
+  question: makeSelectQuestion,
+  currentUser: makeSelectCurrentUser,
 });
 
 function mapDispatchToProps(dispatch) {

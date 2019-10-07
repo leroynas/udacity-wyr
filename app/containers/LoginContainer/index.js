@@ -24,7 +24,7 @@ LoginContainer.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  users: makeSelectUsers(),
+  users: makeSelectUsers,
 });
 
 function mapDispatchToProps(dispatch) {
