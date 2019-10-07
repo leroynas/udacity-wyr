@@ -36,7 +36,7 @@ function App({ currentUser, logoutUser }) {
           />
         ))}
 
-        <Redirect exact from="/" to={routes.default} />
+        <Redirect to={routes.default} />
       </Switch>
     </Fragment>
   );
