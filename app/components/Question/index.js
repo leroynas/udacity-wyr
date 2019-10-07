@@ -47,6 +47,7 @@ function Question({ question, currentUser, saveAnswer }) {
   const [answer, setAnswer] = useState('');
 
   const handleSaveAnswer = () =>
+    answer !== '' &&
     saveAnswer({
       qid: question.id,
       uid: currentUser.id,
@@ -90,6 +91,7 @@ function Question({ question, currentUser, saveAnswer }) {
             color="primary"
             className={classes.button}
             onClick={handleSaveAnswer}
+            disabled={answer === ''}
           >
             Submit answer
           </Button>
