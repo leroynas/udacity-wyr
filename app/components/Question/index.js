@@ -42,7 +42,7 @@ const useStyles = makeStyles({
   },
 });
 
-function Question({ question, currentUser, saveAnswer }) {
+function Question({ question, currentUser, saveAnswer, history }) {
   const classes = useStyles();
   const [answer, setAnswer] = useState('');
 
@@ -53,6 +53,10 @@ function Question({ question, currentUser, saveAnswer }) {
       uid: currentUser.id,
       answer,
     });
+
+  if ({}.hasOwnProperty.call(currentUser.answers, question.id)) {
+    return history.push(`/question/${question.id}/result`);
+  }
 
   return (
     <Page>
@@ -105,6 +109,7 @@ Question.propTypes = {
   question: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,
   saveAnswer: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default memo(Question);
