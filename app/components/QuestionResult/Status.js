@@ -40,19 +40,20 @@ const useStyles = makeStyles({
 
 function Status({ percentage }) {
   const classes = useStyles({ percentage });
+
   return (
     <div className={classes.wrapper}>
       <div className={classes.progress}>
         {percentage !== 0 && (
           <p
             className={classNames([classes.text, classes.textInside])}
-          >{`${percentage}%`}</p>
+          >{`${Math.round(percentage)}%`}</p>
         )}
       </div>
       {percentage < 10 && (
         <p
           className={classNames([classes.text, classes.textOutside])}
-        >{`${percentage}%`}</p>
+        >{`${Math.round(percentage)}%`}</p>
       )}
     </div>
   );
