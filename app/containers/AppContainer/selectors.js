@@ -65,9 +65,34 @@ const makeSelectQuestion = createSelector(
     },
 );
 
+const makeSelectLeaderBoard = createSelector(
+  makeSelectUsers,
+  users =>
+    Object.values(users)
+      .map(user => {
+        const totalAnswers = Object.keys(user.answers).length;
+        const totalQuestions = Object.keys(user.questions).length;
+        const total = totalAnswers + totalQuestions;
+
+        return {
+          ...user,
+          totalAnswers,
+          totalQuestions,
+          total,
+        };
+      })
+      .sort(
+        (a, b) =>
+          b.totalAnswers +
+          b.totalQuestions -
+          (a.totalAnswers + a.totalQuestions),
+      ),
+);
+
 export {
   makeSelectUsers,
   makeSelectCurrentUser,
   makeSelectQuestions,
   makeSelectQuestion,
+  makeSelectLeaderBoard,
 };

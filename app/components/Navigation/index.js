@@ -28,6 +28,10 @@ function Navigation() {
       <Link to="/new-question" className={classes.link}>
         <Button color="inherit">New question</Button>
       </Link>
+
+      <Link to="/leaderboard" className={classes.link}>
+        <Button color="inherit">Leaderboard</Button>
+      </Link>
     </Fragment>
   );
 }

@@ -3,6 +3,7 @@ import QuestionsContainer from 'containers/QuestionsContainer/Loadable';
 import QuestionContainer from 'containers/QuestionContainer/Loadable';
 import QuestionResultContainer from 'containers/QuestionResultContainer/Loadable';
 import NewQuestionContainer from 'containers/NewQuestionContainer/Loadable';
+import LeaderBoardContainer from 'containers/LeaderBoardContainer/Loadable';
 
 const routes = {
   default: '/questions/unanswered',
@@ -31,6 +32,11 @@ const routes = {
     {
       path: '/new-question',
       component: NewQuestionContainer,
+      exact: true,
+    },
+    {
+      path: '/leaderboard',
+      component: LeaderBoardContainer,
       exact: true,
     },
   ],
