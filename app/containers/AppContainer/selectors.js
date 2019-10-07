@@ -24,22 +24,32 @@ const makeSelectCurrentUser = createSelector(
   (users, currentUser) => currentUser && users && users[currentUser],
 );
 
-const makeSelectQuestions = () =>
+const makeSelectQuestions = (answered = null) =>
   createSelector(
+    makeSelectCurrentUser,
     selectUsers,
     selectQuestions,
-    (users, questions) =>
-      Object.values(questions).reduce(
-        (acc, question) => ({
-          ...acc,
-          [question.id]: {
-            ...question,
-            authorName: users[question.author].name,
-            authorAvatarURL: users[question.author].avatarURL,
-          },
-        }),
-        {},
-      ),
+    (currentUser, users, questions) =>
+      Object.values(questions)
+        .filter(
+          question =>
+            answered !== null &&
+            Object.prototype.hasOwnProperty.call(
+              currentUser.answers,
+              question.id,
+            ) === answered,
+        )
+        .reduce(
+          (acc, question) => ({
+            ...acc,
+            [question.id]: {
+              ...question,
+              authorName: users[question.author].name,
+              authorAvatarURL: users[question.author].avatarURL,
+            },
+          }),
+          {},
+        ),
   );
 
 const makeSelectQuestion = createSelector(

@@ -13,13 +13,13 @@ import PageContent from 'components/PageContent';
 
 import Question from './Question';
 
-function Questions({ questions, history }) {
+function Questions({ questionsAnswered, history }) {
   return (
     <Page>
       <PageHeader title="Questions" />
 
       <PageContent>
-        {Object.values(questions).map(question => (
+        {Object.values(questionsAnswered).map(question => (
           <Question key={question.id} question={question} history={history} />
         ))}
       </PageContent>
@@ -28,7 +28,7 @@ function Questions({ questions, history }) {
 }
 
 Questions.propTypes = {
-  questions: PropTypes.object.isRequired,
+  questionsAnswered: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
 };
 

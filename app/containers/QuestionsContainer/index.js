@@ -18,11 +18,13 @@ export function QuestionsContainer(props) {
 }
 
 QuestionsContainer.propTypes = {
-  questions: PropTypes.object.isRequired,
+  questionsAnswered: PropTypes.object.isRequired,
+  questionsUnanswered: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  questions: makeSelectQuestions(),
+  questionsAnswered: makeSelectQuestions(true),
+  questionsUnanswered: makeSelectQuestions(false),
 });
 
 const withConnect = connect(mapStateToProps);
