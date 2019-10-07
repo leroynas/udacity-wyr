@@ -39,6 +39,7 @@ const makeSelectQuestions = (answered = null) =>
               question.id,
             ) === answered,
         )
+        .sort((a, b) => b.timestamp - a.timestamp)
         .reduce(
           (acc, question) => ({
             ...acc,
