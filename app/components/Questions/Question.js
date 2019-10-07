@@ -58,7 +58,7 @@ function Question({ question, history }) {
       <CardHeader title={`${authorName} asks:`} className={classes.header} />
 
       <CardContent className={classes.container}>
-        <CardAvatar />
+        <CardAvatar url={question.authorAvatarURL} />
 
         <div className={classes.content}>
           <Typography variant="h6" className={classes.title}>

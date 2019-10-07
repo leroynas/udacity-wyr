@@ -59,7 +59,7 @@ function Question({ question, currentUser, saveAnswer }) {
       <PageHeader title={`${question.authorName} asks:`} />
 
       <PageContent className={classes.container}>
-        <CardAvatar />
+        <CardAvatar url={question.authorAvatarURL} />
 
         <div className={classes.content}>
           <Typography variant="h6" className={classes.title}>

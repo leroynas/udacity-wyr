@@ -37,6 +37,7 @@ const makeSelectQuestions = () =>
           [question.id]: {
             ...question,
             authorName: users[question.author].name,
+            authorAvatarURL: users[question.author].avatarURL,
           },
         }),
         {},
@@ -52,6 +53,7 @@ const makeSelectQuestion = () =>
       questions[id] && {
         ...questions[id],
         authorName: users[questions[id].author].name,
+        authorAvatarURL: users[questions[id].author].avatarURL,
       },
   );
 

@@ -5,6 +5,7 @@
  */
 
 import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Avatar } from '@material-ui/core';
 
@@ -23,14 +24,18 @@ const useStyles = makeStyles({
   },
 });
 
-function CardAvatar() {
+function CardAvatar({ url }) {
   const classes = useStyles();
 
   return (
     <div className={classes.avatarWrapper}>
-      <Avatar src="http://via.placeholder.com/100" className={classes.avatar} />
+      <Avatar src={url} className={classes.avatar} />
     </div>
   );
 }
+
+CardAvatar.propTypes = {
+  url: PropTypes.string.isRequired,
+};
 
 export default memo(CardAvatar);
