@@ -14,6 +14,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from 'styled-components';
+import WebFont from 'webfontloader';
 import 'sanitize.css/sanitize.css';
 
 import theme from 'core/theme';
@@ -29,6 +30,13 @@ import 'file-loader?name=.htaccess!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
 import configureStore from './configureStore';
+
+// Load Google Fonts
+WebFont.load({
+  google: {
+    families: ['Source Sans Pro', 'Crete Round'],
+  },
+});
 
 // Create redux store with history
 const initialState = {};
