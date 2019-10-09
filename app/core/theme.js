@@ -2,7 +2,7 @@ const theme = {
   font: {
     family: {
       primary: '"Source Sans Pro", calibri',
-      secondary: '"Create Round", droid-serif',
+      secondary: '"Crete Round", droid-serif',
     },
     size: {
       xl: '30px',
