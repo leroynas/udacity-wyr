@@ -13,8 +13,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
-import history from 'utils/history';
+import { ThemeProvider } from 'styled-components';
 import 'sanitize.css/sanitize.css';
+
+import theme from 'core/theme';
+import history from 'utils/history';
 
 // Import root app
 import AppContainer from 'containers/AppContainer';
@@ -36,7 +39,9 @@ const render = () => {
   ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <AppContainer />
+        <ThemeProvider theme={theme}>
+          <AppContainer />
+        </ThemeProvider>
       </ConnectedRouter>
     </Provider>,
     MOUNT_NODE,
