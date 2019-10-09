@@ -14,7 +14,7 @@ import {
   makeSelectQuestion,
   makeSelectCurrentUser,
 } from 'containers/AppContainer/selectors';
-import QuestionResult from 'components/QuestionResult';
+import QuestionResult from 'components/pages/QuestionResult';
 
 export function QuestionResultContainer(props) {
   return <QuestionResult {...props} />;

@@ -12,7 +12,7 @@ import { createStructuredSelector } from 'reselect';
 
 import { makeSelectCurrentUser } from 'containers/AppContainer/selectors';
 import { storeQuestion } from 'containers/AppContainer/actions';
-import NewQuestion from 'components/NewQuestion';
+import NewQuestion from 'components/pages/NewQuestion';
 
 export function NewQuestionContainer(props) {
   return <NewQuestion {...props} />;

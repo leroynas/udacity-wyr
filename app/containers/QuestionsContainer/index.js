@@ -11,7 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import { makeSelectQuestions } from 'containers/AppContainer/selectors';
-import Questions from 'components/Questions';
+import Questions from 'components/pages/Questions';
 
 export function QuestionsContainer(props) {
   return <Questions {...props} />;

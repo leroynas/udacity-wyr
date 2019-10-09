@@ -11,7 +11,7 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
 import { makeSelectLeaderBoard } from 'containers/AppContainer/selectors';
-import LeaderBoard from 'components/LeaderBoard';
+import LeaderBoard from 'components/pages/LeaderBoard';
 
 export function LeaderBoardContainer(props) {
   return <LeaderBoard {...props} />;
