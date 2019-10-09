@@ -8,7 +8,7 @@ import React, { memo, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Switch, Route } from 'react-router-dom';
 
-import Header from 'components/Header';
+import Header from 'components/ui/Header';
 
 import ProtectedRoute from './ProtectedRoute';
 import routes from './routes';

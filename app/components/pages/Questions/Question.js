@@ -15,7 +15,7 @@ import {
   Button,
 } from '@material-ui/core';
 
-import CardAvatar from 'components/CardAvatar';
+import CardAvatar from 'components/ui/CardAvatar';
 
 const useStyles = makeStyles({
   card: {

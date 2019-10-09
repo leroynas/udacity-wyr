@@ -8,9 +8,9 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Page from 'components/Page';
-import PageTabs from 'components/PageTabs';
-import PageContent from 'components/PageContent';
+import Page from 'components/ui/Page';
+import PageTabs from 'components/ui/PageTabs';
+import PageContent from 'components/ui/PageContent';
 
 import QuestionList from './QuestionList';
 

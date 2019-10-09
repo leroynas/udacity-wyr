@@ -9,10 +9,10 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Typography } from '@material-ui/core';
 
-import Page from 'components/Page';
-import PageHeader from 'components/PageHeader';
-import PageContent from 'components/PageContent';
-import CardAvatar from 'components/CardAvatar';
+import Page from 'components/ui/Page';
+import PageHeader from 'components/ui/PageHeader';
+import PageContent from 'components/ui/PageContent';
+import CardAvatar from 'components/ui/CardAvatar';
 import Option from './Option';
 
 const useStyles = makeStyles({

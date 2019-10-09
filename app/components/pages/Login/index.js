@@ -15,9 +15,9 @@ import {
   Button,
 } from '@material-ui/core';
 
-import Page from 'components/Page';
-import PageHeader from 'components/PageHeader';
-import PageContent from 'components/PageContent';
+import Page from 'components/ui/Page';
+import PageHeader from 'components/ui/PageHeader';
+import PageContent from 'components/ui/PageContent';
 
 const useStyles = makeStyles({
   container: {

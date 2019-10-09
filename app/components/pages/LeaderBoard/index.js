@@ -7,9 +7,9 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
-import Page from 'components/Page';
-import PageHeader from 'components/PageHeader';
-import PageContent from 'components/PageContent';
+import Page from 'components/ui/Page';
+import PageHeader from 'components/ui/PageHeader';
+import PageContent from 'components/ui/PageContent';
 
 import User from './User';
 

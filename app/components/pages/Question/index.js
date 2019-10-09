@@ -15,10 +15,10 @@ import {
   Radio,
 } from '@material-ui/core';
 
-import Page from 'components/Page';
-import PageHeader from 'components/PageHeader';
-import PageContent from 'components/PageContent';
-import CardAvatar from 'components/CardAvatar';
+import Page from 'components/ui/Page';
+import PageHeader from 'components/ui/PageHeader';
+import PageContent from 'components/ui/PageContent';
+import CardAvatar from 'components/ui/CardAvatar';
 
 const useStyles = makeStyles({
   container: {

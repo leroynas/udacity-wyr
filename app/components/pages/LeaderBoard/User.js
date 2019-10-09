@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardHeader, CardContent, Typography } from '@material-ui/core';
 
-import CardAvatar from 'components/CardAvatar';
+import CardAvatar from 'components/ui/CardAvatar';
 
 const useStyles = makeStyles({
   card: {
