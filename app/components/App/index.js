@@ -8,10 +8,10 @@ import React, { memo, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Switch, Route } from 'react-router-dom';
 
+import routes from 'core/routes';
 import Header from 'components/ui/Header';
 
 import ProtectedRoute from './ProtectedRoute';
-import routes from './routes';
 
 function App({ currentUser, logoutUser }) {
   return (
