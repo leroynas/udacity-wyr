@@ -4,6 +4,7 @@ import QuestionContainer from 'containers/QuestionContainer/Loadable';
 import QuestionResultContainer from 'containers/QuestionResultContainer/Loadable';
 import NewQuestionContainer from 'containers/NewQuestionContainer/Loadable';
 import LeaderBoardContainer from 'containers/LeaderBoardContainer/Loadable';
+import NotFound from 'components/pages/NotFound/Loadable';
 
 const routes = {
   default: '/questions/unanswered',
@@ -12,6 +13,10 @@ const routes = {
       path: '/login',
       component: LoginContainer,
       exact: true,
+    },
+    {
+      path: '*',
+      component: NotFound,
     },
   ],
   protected: [

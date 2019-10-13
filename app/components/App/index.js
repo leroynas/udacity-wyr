@@ -6,7 +6,7 @@
 
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import routes from 'core/routes';
 import Header from 'components/ui/Header';
@@ -26,10 +26,6 @@ function App({ currentUser, logoutUser }) {
 
       <Main>
         <Switch>
-          {routes.public.map(route => (
-            <Route key={route.path} exact {...route} />
-          ))}
-
           {routes.protected.map(route => (
             <ProtectedRoute
               key={route.path}
@@ -38,7 +34,9 @@ function App({ currentUser, logoutUser }) {
             />
           ))}
 
-          <Redirect to={routes.default} />
+          {routes.public.map(route => (
+            <Route key={route.path} exact {...route} />
+          ))}
         </Switch>
       </Main>
     </Wrapper>
