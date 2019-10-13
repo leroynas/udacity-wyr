@@ -7,23 +7,23 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
+import Container from 'components/ui/Container';
+import Title from 'components/ui/Title';
 import Page from 'components/ui/Page';
-import PageHeader from 'components/ui/PageHeader';
-import PageContent from 'components/ui/PageContent';
 
 import User from './User';
 
 function LeaderBoard({ leaderBoard }) {
   return (
-    <Page>
-      <PageHeader title="Leaderboard" />
+    <Container>
+      <Title>Leaderboard</Title>
 
-      <PageContent>
-        {leaderBoard.map(user => (
-          <User key={user.id} user={user} />
+      <Page>
+        {leaderBoard.map((user, position) => (
+          <User key={user.id} user={user} position={position} />
         ))}
-      </PageContent>
-    </Page>
+      </Page>
+    </Container>
   );
 }
 

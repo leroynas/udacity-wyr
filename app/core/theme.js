@@ -5,10 +5,11 @@ const theme = {
       secondary: '"Crete Round", droid-serif',
     },
     size: {
-      xl: '30px',
-      lg: '22px',
-      md: '16px',
-      sm: '15px',
+      xl: 29,
+      lg: 25,
+      md: 21,
+      sm: 18,
+      xs: 15,
     },
   },
   palette: {
@@ -19,8 +20,53 @@ const theme = {
     },
     secondary: {},
     default: {
-      main: '#ffffff',
+      main: '#f2f1f8',
+      light: '#ffffff',
       text: '#000000',
+    },
+    score: {
+      gold: '#d6af36',
+      silver: '#a7a7ad',
+      bronze: '#a77044',
+    },
+  },
+  sizes: {
+    width: {
+      xl: 1000,
+      lg: 900,
+      md: 650,
+      sm: 500,
+    },
+    header: 240,
+    avatar: 140,
+    input: 60,
+    statusBar: 45,
+    icon: 24,
+  },
+  spacing: {
+    xl: 60,
+    lg: 40,
+    md: 20,
+    sm: 12,
+    xs: 8,
+  },
+  shape: {
+    borderRadius: {
+      lg: 12,
+      md: 5,
+      sm: 3,
+    },
+    shadow: {
+      lg: `
+        0 16px 24px 2px rgba(0, 0, 0, 0.05),
+        0 6px 30px 5px rgba(0, 0, 0, 0.03),
+        0 8px 10px -5px rgba(0, 0, 0, 0.07)
+      `,
+      md: `
+        0 8px 12px 1px rgba(0, 0, 0, 0.03),
+        0 3px 16px 2px rgba(0, 0, 0, 0.02),
+        0 4px 6px -3px rgba(0, 0, 0, 0.04)
+      `,
     },
   },
 };

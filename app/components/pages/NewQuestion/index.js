@@ -6,22 +6,18 @@
 
 import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
-import { FormControl, Typography, TextField, Button } from '@material-ui/core';
 
+import Container from 'components/ui/Container';
+import Title from 'components/ui/Title';
 import Page from 'components/ui/Page';
-import PageHeader from 'components/ui/PageHeader';
-import PageContent from 'components/ui/PageContent';
-
-const useStyles = makeStyles({
-  or: {
-    textAlign: 'center',
-  },
-});
+import Heading from 'components/ui/Heading';
+import FormGroup from 'components/ui/FormGroup';
+import TextInput from 'components/ui/TextInput';
+import Flex from 'components/ui/Flex';
+import Text from 'components/ui/Text';
+import Button from 'components/ui/Button';
 
 function NewQuestion({ saveQuestion, currentUser }) {
-  const classes = useStyles();
-
   const [optionOneText, setOptionOneText] = useState('');
   const [optionTwoText, setOptionTwoText] = useState('');
 
@@ -33,46 +29,72 @@ function NewQuestion({ saveQuestion, currentUser }) {
     });
 
   return (
-    <Page>
-      <PageHeader title="Create New Question" />
-      <PageContent>
-        <FormControl variant="filled">
-          <Typography variant="h5">Would you rather...</Typography>
+    <Container>
+      <Title>Create New Question</Title>
 
-          <TextField
-            label="Option one"
-            margin="normal"
-            variant="outlined"
+      <Page>
+        <Heading size="xl" spacing="lg">
+          Would you rather
+        </Heading>
+
+        <FormGroup spacing="md">
+          <TextInput
             value={optionOneText}
-            onChange={event => {
-              setOptionOneText(event.target.value);
-            }}
+            onChange={e => setOptionOneText(e.target.value)}
           />
+        </FormGroup>
 
-          <Typography variant="h6" className={classes.or}>
-            or
-          </Typography>
+        <Flex justifyContent="center" spacing="md">
+          <Text>or</Text>
+        </Flex>
 
-          <TextField
-            label="Option two"
-            margin="normal"
-            variant="outlined"
+        <FormGroup>
+          <TextInput
             value={optionTwoText}
-            onChange={event => {
-              setOptionTwoText(event.target.value);
-            }}
+            onChange={e => setOptionTwoText(e.target.value)}
           />
+        </FormGroup>
 
-          <Button
-            variant="outlined"
-            color="primary"
-            onClick={handleSaveQuestion}
-          >
-            Save Question
-          </Button>
-        </FormControl>
-      </PageContent>
-    </Page>
+        <Button onClick={handleSaveQuestion}>Save New Question</Button>
+        {/* <PageContent>
+          <FormControl variant="filled">
+            <Typography variant="h5">Would you rather...</Typography>
+
+            <TextField
+              label="Option one"
+              margin="normal"
+              variant="outlined"
+              value={optionOneText}
+              onChange={event => {
+                setOptionOneText(event.target.value);
+              }}
+            />
+
+            <Typography variant="h6" className={classes.or}>
+              or
+            </Typography>
+
+            <TextField
+              label="Option two"
+              margin="normal"
+              variant="outlined"
+              value={optionTwoText}
+              onChange={event => {
+                setOptionTwoText(event.target.value);
+              }}
+            />
+
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={handleSaveQuestion}
+            >
+              Save Question
+            </Button>
+          </FormControl>
+        </PageContent> */}
+      </Page>
+    </Container>
   );
 }
 

@@ -4,36 +4,43 @@
  *
  */
 
-import React, { memo, Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 
-const useStyles = makeStyles({
-  link: {
-    color: 'inherit',
-    textDecoration: 'none',
-  },
-});
+import Flex from 'components/ui/Flex';
+import Icon from 'components/ui/Icon';
 
-function Navigation() {
-  const classes = useStyles();
+import Container from './Container';
+import Button from './Button';
+import Link from './Link';
 
+function Navigation({ currentUser, logoutUser }) {
   return (
-    <Fragment>
-      <Link to="/questions/unanswered" className={classes.link}>
-        <Button color="inherit">Questions</Button>
+    <Container>
+      <Link to="/questions/unanswered">
+        <Button>Questions</Button>
+      </Link>
+      <Link to="/new-question">
+        <Button>New question</Button>
+      </Link>
+      <Link to="/leaderboard">
+        <Button>Leaderboard</Button>
       </Link>
 
-      <Link to="/new-question" className={classes.link}>
-        <Button color="inherit">New question</Button>
-      </Link>
-
-      <Link to="/leaderboard" className={classes.link}>
-        <Button color="inherit">Leaderboard</Button>
-      </Link>
-    </Fragment>
+      <Button clickable={false}>
+        <Flex alignItems="center">
+          {currentUser.avatarURL && <Icon src={currentUser.avatarURL} />}
+          {currentUser.name}
+        </Flex>
+      </Button>
+      <Button onClick={logoutUser}>Logout</Button>
+    </Container>
   );
 }
+
+Navigation.propTypes = {
+  currentUser: PropTypes.object.isRequired,
+  logoutUser: PropTypes.func.isRequired,
+};
 
 export default memo(Navigation);

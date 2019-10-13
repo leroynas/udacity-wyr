@@ -6,44 +6,19 @@
 
 import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
-import {
-  Typography,
-  Button,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-} from '@material-ui/core';
+import { Redirect } from 'react-router-dom';
 
+import Container from 'components/ui/Container';
+import Title from 'components/ui/Title';
 import Page from 'components/ui/Page';
-import PageHeader from 'components/ui/PageHeader';
-import PageContent from 'components/ui/PageContent';
-import CardAvatar from 'components/ui/CardAvatar';
+import Avatar from 'components/ui/Avatar';
+import Flex from 'components/ui/Flex';
+import Heading from 'components/ui/Heading';
+import FormGroup from 'components/ui/FormGroup';
+import RadioInput from 'components/ui/RadioInput';
+import Button from 'components/ui/Button';
 
-const useStyles = makeStyles({
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  content: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1,
-    marginLeft: 20,
-    paddingTop: 10,
-    paddingBottom: 10,
-  },
-  title: {
-    marginBottom: 10,
-  },
-  button: {
-    flexGrow: 1,
-    marginTop: 15,
-  },
-});
-
-function Question({ question, currentUser, saveAnswer, history }) {
-  const classes = useStyles();
+function Question({ question, currentUser, saveAnswer }) {
   const [answer, setAnswer] = useState('');
 
   const handleSaveAnswer = () =>
@@ -55,53 +30,40 @@ function Question({ question, currentUser, saveAnswer, history }) {
     });
 
   if ({}.hasOwnProperty.call(currentUser.answers, question.id)) {
-    return history.push(`/question/${question.id}/result`);
+    return <Redirect url={`/question/${question.id}/result`} />;
   }
 
+  const options = [
+    { title: question.optionOne.text, value: 'optionOne' },
+    { title: question.optionTwo.text, value: 'optionTwo' },
+  ];
+
   return (
-    <Page>
-      <PageHeader title={`${question.authorName} asks:`} />
+    <Container>
+      <Title>{`${question.authorName} asks`}</Title>
 
-      <PageContent className={classes.container}>
-        <CardAvatar url={question.authorAvatarURL} />
+      <Page>
+        <Flex alignItems="column" spacing="lg">
+          <Avatar src={question.authorAvatarURL} />
 
-        <div className={classes.content}>
-          <Typography variant="h6" className={classes.title}>
-            Would you rather...
-          </Typography>
+          <Flex direction="column">
+            <Heading size="xl" spacing="md">
+              Would you rather...
+            </Heading>
 
-          <RadioGroup
-            aria-label="option"
-            name="option"
-            value={answer}
-            onChange={event => {
-              setAnswer(event.target.value);
-            }}
-          >
-            <FormControlLabel
-              value="optionOne"
-              control={<Radio />}
-              label={question.optionOne.text}
-            />
-            <FormControlLabel
-              value="optionTwo"
-              control={<Radio />}
-              label={question.optionTwo.text}
-            />
-          </RadioGroup>
+            <FormGroup>
+              <RadioInput
+                options={options}
+                value={answer}
+                onChange={setAnswer}
+              />
+            </FormGroup>
+          </Flex>
+        </Flex>
 
-          <Button
-            variant="outlined"
-            color="primary"
-            className={classes.button}
-            onClick={handleSaveAnswer}
-            disabled={answer === ''}
-          >
-            Submit answer
-          </Button>
-        </div>
-      </PageContent>
-    </Page>
+        <Button onClick={handleSaveAnswer}>Submit Vote</Button>
+      </Page>
+    </Container>
   );
 }
 
@@ -109,7 +71,6 @@ Question.propTypes = {
   question: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,
   saveAnswer: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
 };
 
 export default memo(Question);

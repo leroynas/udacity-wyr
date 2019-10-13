@@ -6,83 +6,42 @@
 
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  Typography,
-  Button,
-} from '@material-ui/core';
 
-import CardAvatar from 'components/ui/CardAvatar';
+import Flex from 'components/ui/Flex';
+import Avatar from 'components/ui/Avatar';
+import Heading from 'components/ui/Heading';
+import Text from 'components/ui/Text';
 
-const useStyles = makeStyles({
-  card: {
-    marginBottom: 20,
-  },
-  header: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-    borderBottomStyle: 'solid',
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  content: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1,
-    marginLeft: 20,
-    paddingTop: 10,
-    paddingBottom: 10,
-  },
-  title: {
-    marginBottom: 10,
-  },
-  button: {
-    flexGrow: 1,
-    marginTop: 15,
-  },
-});
-
-function Question({ question, history }) {
-  const classes = useStyles();
+function Question({ question, history, type }) {
   const { id, authorName, optionOne } = question;
 
-  const goToQuestion = () => history.push(`/question/${id}`);
+  const link =
+    type === 'unanswered' ? `/question/${id}` : `/question/${id}/result`;
+
+  const goToQuestion = () => history.push(link);
 
   return (
-    <Card className={classes.card}>
-      <CardHeader title={`${authorName} asks:`} className={classes.header} />
+    <Flex
+      onClick={goToQuestion}
+      alignItems="center"
+      spacing="xl"
+      cursor="pointer"
+    >
+      <Avatar src={question.authorAvatarURL} />
 
-      <CardContent className={classes.container}>
-        <CardAvatar url={question.authorAvatarURL} />
-
-        <div className={classes.content}>
-          <Typography variant="h6" className={classes.title}>
-            Would you rather...
-          </Typography>
-          <Typography variant="body1">{optionOne.text} or ...</Typography>
-
-          <Button
-            variant="outlined"
-            color="primary"
-            className={classes.button}
-            onClick={goToQuestion}
-          >
-            View Poll
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
+      <Flex direction="column">
+        <Heading size="xl" spacing="sm">{`${authorName} asks:`}</Heading>
+        <Text spacing="xs">Would you rather...</Text>
+        <Text spacing="xs">{optionOne.text}...</Text>
+      </Flex>
+    </Flex>
   );
 }
 
 Question.propTypes = {
   question: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default memo(Question);

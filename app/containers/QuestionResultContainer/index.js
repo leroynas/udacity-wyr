@@ -23,7 +23,6 @@ export function QuestionResultContainer(props) {
 QuestionResultContainer.propTypes = {
   question: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

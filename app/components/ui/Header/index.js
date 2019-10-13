@@ -4,41 +4,32 @@
  *
  */
 
-import React, { memo, Fragment } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
 
-import Navigation from '../Navigation';
+import Container from 'components/ui/Container';
+import Heading from 'components/ui/Heading';
+import Navigation from 'components/ui/Navigation';
 
-const useStyles = makeStyles({
-  title: {
-    flexGrow: 1,
-  },
-});
+import Wrapper from './Wrapper';
 
 function Header({ title, currentUser, logoutUser }) {
-  const classes = useStyles();
-
   return (
-    <AppBar position="relative">
-      <Toolbar>
-        <Typography variant="h6" className={classes.title}>
-          {title}
-        </Typography>
+    <Wrapper>
+      <Container
+        size="xl"
+        height={80}
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+      >
+        <Heading size="xl">{title}</Heading>
 
-        <Navigation />
-
-        {currentUser && (
-          <Fragment>
-            <Button color="inherit">{currentUser.name}</Button>
-            <Button color="inherit" onClick={logoutUser}>
-              Logout
-            </Button>
-          </Fragment>
+        {currentUser !== null && (
+          <Navigation currentUser={currentUser} logoutUser={logoutUser} />
         )}
-      </Toolbar>
-    </AppBar>
+      </Container>
+    </Wrapper>
   );
 }
 

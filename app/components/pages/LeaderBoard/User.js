@@ -6,68 +6,37 @@
 
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
-import { Card, CardHeader, CardContent, Typography } from '@material-ui/core';
+import Flex from 'components/ui/Flex';
+import Avatar from 'components/ui/Avatar';
+import Heading from 'components/ui/Heading';
+import Text from 'components/ui/Text';
 
-import CardAvatar from 'components/ui/CardAvatar';
+import Score from './Score';
 
-const useStyles = makeStyles({
-  card: {
-    marginBottom: 20,
-  },
-  header: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-    borderBottomStyle: 'solid',
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  content: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1,
-    marginLeft: 20,
-    paddingTop: 10,
-    paddingBottom: 10,
-  },
-  title: {
-    marginBottom: 10,
-  },
-});
-
-function User({ user }) {
-  const classes = useStyles();
+function User({ user, position }) {
   const { name, totalQuestions, totalAnswers, total } = user;
 
   return (
-    <Card className={classes.card}>
-      <CardHeader title={name} className={classes.header} />
+    <Flex alignItems="center" spacing="xl">
+      <Avatar src={user.avatarURL} />
 
-      <CardContent className={classes.container}>
-        <CardAvatar url={user.avatarURL} />
+      <Flex direction="column">
+        <Heading size="xl" spacing="sm">
+          {name}
+        </Heading>
 
-        <div className={classes.content}>
-          <Typography variant="h6" className={classes.title}>
-            {`Total questions: ${totalQuestions}`}
-          </Typography>
+        <Text spacing="xs">{`Total questions: ${totalQuestions}`}</Text>
+        <Text spacing="xs">{`Total answers: ${totalAnswers}`}</Text>
+      </Flex>
 
-          <Typography variant="h6" className={classes.title}>
-            {`Total answers: ${totalAnswers}`}
-          </Typography>
-
-          <Typography variant="h6" className={classes.title}>
-            {`Score: ${total}`}
-          </Typography>
-        </div>
-      </CardContent>
-    </Card>
+      <Score score={total} position={position} />
+    </Flex>
   );
 }
 
 User.propTypes = {
   user: PropTypes.object.isRequired,
+  position: PropTypes.number.isRequired,
 };
 
 export default memo(User);

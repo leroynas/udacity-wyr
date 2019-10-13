@@ -8,9 +8,9 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
+import Container from 'components/ui/Container';
+import Tabs from 'components/ui/Tabs';
 import Page from 'components/ui/Page';
-import PageTabs from 'components/ui/PageTabs';
-import PageContent from 'components/ui/PageContent';
 
 import QuestionList from './QuestionList';
 
@@ -22,41 +22,49 @@ function Questions({
 }) {
   const tabs = [
     {
-      title: 'UNANSWERED QUESTIONS',
-      action: () => history.push('/questions/unanswered'),
-      active: location.pathname.includes('/questions/unanswered'),
+      title: 'Unanswered Questions',
+      onClick: () => history.push('/questions/unanswered'),
+      selected: location.pathname.includes('/questions/unanswered'),
     },
     {
-      title: 'ANSWERED QUESTIONS',
-      action: () => history.push('/questions/answered'),
-      active: location.pathname.includes('/questions/answered'),
+      title: 'Answered Questions',
+      onClick: () => history.push('/questions/answered'),
+      selected: location.pathname.includes('/questions/answered'),
     },
   ];
 
   return (
-    <Page>
-      <PageTabs tabs={tabs} />
+    <Container>
+      <Tabs tabs={tabs} />
 
-      <PageContent>
+      <Page>
         <Switch>
           <Route
             path="/questions/unanswered"
             render={() => (
-              <QuestionList questions={questionsUnanswered} history={history} />
+              <QuestionList
+                questions={questionsUnanswered}
+                history={history}
+                type="unanswered"
+              />
             )}
           />
 
           <Route
             path="/questions/answered"
             render={() => (
-              <QuestionList questions={questionsAnswered} history={history} />
+              <QuestionList
+                questions={questionsAnswered}
+                history={history}
+                type="answered"
+              />
             )}
           />
 
           <Redirect to="/questions/unanswered" />
         </Switch>
-      </PageContent>
-    </Page>
+      </Page>
+    </Container>
   );
 }
 

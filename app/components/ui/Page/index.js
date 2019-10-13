@@ -1,32 +1,11 @@
-/**
- *
- * Questions
- *
- */
+import styled from 'styled-components';
 
-import React, { memo } from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
-import { Container, Card } from '@material-ui/core';
+const Page = styled.div`
+  background-color: ${props => props.theme.palette.default.light};
+  border-radius: ${props => props.theme.shape.borderRadius.lg}px;
+  box-shadow: ${props => props.theme.shape.shadow.lg};
+  padding: ${props => props.theme.spacing.xl}px
+    ${props => props.theme.spacing.lg}px;
+`;
 
-const useStyles = makeStyles({
-  container: {
-    paddingTop: 30,
-  },
-});
-
-function Page({ children }) {
-  const classes = useStyles();
-
-  return (
-    <Container className={classes.container} maxWidth="sm">
-      <Card>{children}</Card>
-    </Container>
-  );
-}
-
-Page.propTypes = {
-  children: PropTypes.array,
-};
-
-export default memo(Page);
+export default Page;
