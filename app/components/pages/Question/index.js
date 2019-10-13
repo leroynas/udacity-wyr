@@ -30,7 +30,7 @@ function Question({ question, currentUser, saveAnswer }) {
     });
 
   if ({}.hasOwnProperty.call(currentUser.answers, question.id)) {
-    return <Redirect url={`/question/${question.id}/result`} />;
+    return <Redirect to={`/question/${question.id}/result`} />;
   }
 
   const options = [

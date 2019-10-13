@@ -15,14 +15,19 @@ import {
   makeSelectQuestion,
   makeSelectCurrentUser,
 } from 'containers/AppContainer/selectors';
+import NotFound from 'components/pages/NotFound';
 import Question from 'components/pages/Question';
 
 export function QuestionContainer(props) {
+  if (typeof props.question === 'undefined') {
+    return <NotFound />;
+  }
+
   return <Question {...props} />;
 }
 
 QuestionContainer.propTypes = {
-  question: PropTypes.object.isRequired,
+  question: PropTypes.object,
   currentUser: PropTypes.object.isRequired,
   saveAnswer: PropTypes.func.isRequired,
 };

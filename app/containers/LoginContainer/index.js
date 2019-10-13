@@ -29,7 +29,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    loginUser: id => dispatch(loginUser(id)),
+    loginUser: (id, referrer) => dispatch(loginUser(id, referrer)),
   };
 }
 

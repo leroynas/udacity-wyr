@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 
-function ProtectedRoute({ component: Component, currentUser, ...rest }) {
+function ProtectedRoute({
+  component: Component,
+  currentUser,
+  referrer,
+  ...rest
+}) {
   return (
     <Route
       {...rest}
@@ -10,7 +15,7 @@ function ProtectedRoute({ component: Component, currentUser, ...rest }) {
         currentUser !== null ? (
           <Component {...props} />
         ) : (
-          <Redirect to={{ pathname: '/login' }} />
+          <Redirect to={{ pathname: '/login', referrer }} />
         )
       }
     />
@@ -20,6 +25,7 @@ function ProtectedRoute({ component: Component, currentUser, ...rest }) {
 ProtectedRoute.propTypes = {
   component: PropTypes.func.isRequired,
   currentUser: PropTypes.object,
+  referrer: PropTypes.string.isRequired,
 };
 
 export default ProtectedRoute;

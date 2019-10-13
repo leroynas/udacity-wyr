@@ -6,6 +6,7 @@
 
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import Container from 'components/ui/Container';
 import Title from 'components/ui/Title';
@@ -18,6 +19,10 @@ import Option from './Option';
 
 function QuestionResult({ question, currentUser }) {
   const { authorName, optionOne, optionTwo } = question;
+
+  if (!{}.hasOwnProperty.call(currentUser.answers, question.id)) {
+    return <Redirect to={`/question/${question.id}`} />;
+  }
 
   const totalVotes = optionOne.votes.length + optionTwo.votes.length;
 

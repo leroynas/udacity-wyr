@@ -17,6 +17,7 @@ import QuestionList from './QuestionList';
 function Questions({
   questionsAnswered,
   questionsUnanswered,
+  currentUser,
   history,
   location,
 }) {
@@ -46,6 +47,7 @@ function Questions({
                 questions={questionsUnanswered}
                 history={history}
                 type="unanswered"
+                loggedIn={currentUser !== null}
               />
             )}
           />
@@ -57,6 +59,7 @@ function Questions({
                 questions={questionsAnswered}
                 history={history}
                 type="answered"
+                loggedIn={currentUser !== null}
               />
             )}
           />
@@ -71,6 +74,7 @@ function Questions({
 Questions.propTypes = {
   questionsAnswered: PropTypes.object.isRequired,
   questionsUnanswered: PropTypes.object.isRequired,
+  currentUser: PropTypes.object,
   history: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
 };

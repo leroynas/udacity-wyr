@@ -31,13 +31,14 @@ const makeSelectQuestions = (answered = null) =>
     selectQuestions,
     (currentUser, users, questions) =>
       Object.values(questions)
-        .filter(
-          question =>
-            answered !== null &&
-            Object.prototype.hasOwnProperty.call(
-              currentUser.answers,
-              question.id,
-            ) === answered,
+        .filter(question =>
+          currentUser === null
+            ? answered !== null && !answered
+            : answered !== null &&
+              Object.prototype.hasOwnProperty.call(
+                currentUser.answers,
+                question.id,
+              ) === answered,
         )
         .sort((a, b) => b.timestamp - a.timestamp)
         .reduce(

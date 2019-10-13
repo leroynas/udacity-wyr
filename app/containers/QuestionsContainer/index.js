@@ -10,7 +10,10 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import { makeSelectQuestions } from 'containers/AppContainer/selectors';
+import {
+  makeSelectQuestions,
+  makeSelectCurrentUser,
+} from 'containers/AppContainer/selectors';
 import Questions from 'components/pages/Questions';
 
 export function QuestionsContainer(props) {
@@ -25,6 +28,7 @@ QuestionsContainer.propTypes = {
 const mapStateToProps = createStructuredSelector({
   questionsAnswered: makeSelectQuestions(true),
   questionsUnanswered: makeSelectQuestions(false),
+  currentUser: makeSelectCurrentUser,
 });
 
 const withConnect = connect(mapStateToProps);

@@ -41,10 +41,11 @@ export function usersLoadingError(message) {
   };
 }
 
-export function loginUser(id) {
+export function loginUser(id, referrer) {
   return {
     type: LOGIN_USER,
     id,
+    referrer,
   };
 }
 

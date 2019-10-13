@@ -20,26 +20,37 @@ function Navigation({ currentUser, logoutUser }) {
       <Link to="/questions/unanswered">
         <Button>Questions</Button>
       </Link>
-      <Link to="/new-question">
-        <Button>New question</Button>
-      </Link>
-      <Link to="/leaderboard">
-        <Button>Leaderboard</Button>
-      </Link>
 
-      <Button clickable={false}>
-        <Flex alignItems="center">
-          {currentUser.avatarURL && <Icon src={currentUser.avatarURL} />}
-          {currentUser.name}
-        </Flex>
-      </Button>
-      <Button onClick={logoutUser}>Logout</Button>
+      {currentUser !== null ? (
+        <>
+          <Link to="/new">
+            <Button>New question</Button>
+          </Link>
+
+          <Link to="/leaderboard">
+            <Button>Leaderboard</Button>
+          </Link>
+
+          <Button clickable={false}>
+            <Flex alignItems="center">
+              {currentUser.avatarURL && <Icon src={currentUser.avatarURL} />}
+              {currentUser.name}
+            </Flex>
+          </Button>
+
+          <Button onClick={logoutUser}>Logout</Button>
+        </>
+      ) : (
+        <Link to="/login">
+          <Button>Login</Button>
+        </Link>
+      )}
     </Container>
   );
 }
 
 Navigation.propTypes = {
-  currentUser: PropTypes.object.isRequired,
+  currentUser: PropTypes.object,
   logoutUser: PropTypes.func.isRequired,
 };
 

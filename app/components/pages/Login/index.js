@@ -15,10 +15,11 @@ import Label from 'components/ui/Label';
 import SelectInput from 'components/ui/SelectInput';
 import Button from 'components/ui/Button';
 
-function Login({ users, loginUser }) {
+function Login({ users, loginUser, location }) {
   const [userID, setUserID] = useState('');
 
-  const handleLoginUser = () => userID !== '' && loginUser(userID);
+  const handleLoginUser = () =>
+    userID !== '' && loginUser(userID, location.referrer);
 
   return (
     <Container>
@@ -49,6 +50,7 @@ function Login({ users, loginUser }) {
 Login.propTypes = {
   users: PropTypes.object.isRequired,
   loginUser: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default memo(Login);

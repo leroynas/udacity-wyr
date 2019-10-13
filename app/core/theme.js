@@ -9,7 +9,7 @@ const theme = {
       lg: 25,
       md: 21,
       sm: 18,
-      xs: 15,
+      xs: 14,
     },
   },
   palette: {

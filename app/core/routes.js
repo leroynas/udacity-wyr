@@ -15,15 +15,15 @@ const routes = {
       exact: true,
     },
     {
+      path: '/questions',
+      component: QuestionsContainer,
+    },
+    {
       path: '*',
       component: NotFound,
     },
   ],
   protected: [
-    {
-      path: '/questions',
-      component: QuestionsContainer,
-    },
     {
       path: '/question/:id',
       component: QuestionContainer,
@@ -35,7 +35,7 @@ const routes = {
       exact: true,
     },
     {
-      path: '/new-question',
+      path: '/new',
       component: NewQuestionContainer,
       exact: true,
     },

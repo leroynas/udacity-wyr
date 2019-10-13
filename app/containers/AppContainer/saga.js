@@ -36,8 +36,8 @@ function* loadUsers() {
   }
 }
 
-function* loginUser() {
-  yield put(push('/questions/unanswered'));
+function* loginUser({ referrer }) {
+  yield put(push(referrer || '/questions/unanswered'));
 }
 
 function* loadQuestions() {

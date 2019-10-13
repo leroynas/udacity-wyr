@@ -25,9 +25,7 @@ function Header({ title, currentUser, logoutUser }) {
       >
         <Heading size="xl">{title}</Heading>
 
-        {currentUser !== null && (
-          <Navigation currentUser={currentUser} logoutUser={logoutUser} />
-        )}
+        <Navigation currentUser={currentUser} logoutUser={logoutUser} />
       </Container>
     </Wrapper>
   );

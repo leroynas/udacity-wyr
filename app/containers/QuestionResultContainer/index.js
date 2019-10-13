@@ -15,13 +15,18 @@ import {
   makeSelectCurrentUser,
 } from 'containers/AppContainer/selectors';
 import QuestionResult from 'components/pages/QuestionResult';
+import NotFound from 'components/pages/NotFound';
 
 export function QuestionResultContainer(props) {
+  if (typeof props.question === 'undefined') {
+    return <NotFound />;
+  }
+
   return <QuestionResult {...props} />;
 }
 
 QuestionResultContainer.propTypes = {
-  question: PropTypes.object.isRequired,
+  question: PropTypes.object,
   currentUser: PropTypes.object.isRequired,
 };
 
